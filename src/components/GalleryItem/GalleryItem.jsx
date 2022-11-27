@@ -2,34 +2,30 @@ import { useState } from "react";
 import './GalleryItem.css';
 import Axios from "axios";
 
-function GalleryItem (gallery){
+function GalleryItem ({image, fetchGallery}){
 
     const [isClicked, setIsClicked] = useState(false);
-    // const [setButton, setButtonClicked] = useState('')
 
-    // function likeClicked(){
+    function likeButton (data){
 
-    //     console.log('Add a like to',gallery.gallery.id)
-
-    //     // Axios.put('/gallery/like/' + gallery.gallery.id)
-    //     // .then(res => {
-    //     // console.log('liked successfully');
-    //     // })
-    //     // .catch(err => {
-    //     // console.log('error in axios.put:', err);
-    //     // })
-    // }
-
-
+        console.log(data)
+        Axios.put('/gallery/like/' + data)
+        .then(res => {
+            console.log('liked successfully');
+            fetchGallery();
+        })
+        .catch(err => {console.log('error in axios.put:', err)
+        });
+    }    
 
     return(
 
         <>
 
-            <li className="listitem" key={gallery.gallery.id} onClick={() => setIsClicked(!isClicked)}>
-                {isClicked ? <p>{gallery.gallery.description}</p> : <p><img src={gallery.gallery.path}/></p>}         
+            <li className="listitem" key={image.id} onClick={() => setIsClicked(!isClicked)}>
+                {isClicked ? <p>{image.description}</p> : <p><img src={image.path}/></p>}         
             </li>    
-            <button id={gallery.gallery.id} onClick={() => console.log(gallery.gallery.id)}>I love this!</button> This many people love this: {gallery.gallery.likes}
+            <button id={image.id} onClick={() => likeButton(image.id)}>I love this!</button> This many people love this: {image.likes}
 
         </>
     )

@@ -8,7 +8,7 @@ import Axios from 'axios';
 function App() {
 
 
-  const [gallery, setGallery] = useState([]);
+  const [galleryList, setGalleryList] = useState([]);
 
 
   useEffect( () => {                                      //Initial Page onLoad
@@ -24,14 +24,14 @@ function App() {
     })
       .then( (response) => {
         console.log('Just the data:', response.data);
-        setGallery(response.data);
+        setGalleryList(response.data);
       })
       .catch(function (error) {
         console.log('Error on get:', error);
       });
   }
 
-  console.log('This is the gallery',gallery);
+  console.log('This is the gallery',galleryList);
 
 
 
@@ -48,7 +48,12 @@ function App() {
       </div>
 
       <div className="gallery">
-        <GalleryList galleryDrill={gallery}/>
+
+        <GalleryList
+        images={galleryList}
+        fetchGallery={fetchGallery}
+        />
+        
       </div>
 
       <div className="footer">
