@@ -1,0 +1,10 @@
+.listitem {
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+    width: fit-content;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+  }

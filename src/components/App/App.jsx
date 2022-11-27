@@ -48,17 +48,8 @@ function App() {
       </div>
 
       <div className="gallery">
-        {/* <p>test</p> */}
         <GalleryList galleryDrill={gallery}/>
-
       </div>
-
-
-
-
-
-      {/* <p>{galleryList[0].id}</p>
-      <p><img src={galleryList[0].path}></img></p> */}
 
       <div className="footer">
         <footer className="App-footer">
